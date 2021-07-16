@@ -19,7 +19,7 @@ body {
     border: solid black 4px;
     padding: 1em;
     margin: 1em;
-    height: 40em;
+    height: 60em;
 }
 
 .cities {
@@ -73,3 +73,19 @@ li:hover{
     transition-delay:0.5s;
     transition: border .75s;
 }
+
+.city-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.temp-today {
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+.other-info {
+    font-size: 34px;
+    padding: 1em;
+}
+
