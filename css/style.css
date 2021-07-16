@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: white;
+}
+
+.header {
+    text-align: center;
+    background-image: linear-gradient(to right bottom, #38033f, #06008B);    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    border: solid black 4px;
+    padding: 1em;
+    margin: 1em;
+    height: 40em;
+}
+
+.cities {
+    border: solid black 4px;
+    padding: 1em;
+    width: 25%;
+    margin: 0.25em 0 0.25em 0;
+}
+
+.city-info {
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    width: 75%;
+    padding: 0.25em;
+    height: 100%;
+}
+
+.city {
+    border: solid black 4px;
+    padding: 1em;
+    width: 100%;
+    height: 50%;
+    margin-bottom:0.25em;
+}
+
+.forecast {
+    border: solid black 4px;
+    padding: 1em;
+    width: 100%;
+    height: 50%;
+    margin-top:0.25em;
+}
+
+.saved-cities-list {
+    text-align: center;
+    width: 100%;
+    padding: 1em;
+    font-weight: bold;
+}
+
+li {
+    list-style: none;
+    padding: 0.25em;
+    border: solid rgb(173, 173, 173) 0.05em;
+}
+
+li:hover{
+    border: solid rgb(102, 102, 102) 0.2em;
+    transition-delay:0.5s;
+    transition: border .75s;
+}
