@@ -38,6 +38,8 @@ $("li").on('click', function () {
     otherEl.empty();
     iconEl.empty();
     tempTodayEl.empty();
+    windEl.empty();
+    humidityEl.empty();
     var clickWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
     var clickForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
     // console.log(clickForecastUrl);
@@ -85,7 +87,7 @@ function displayWeather() {
 
 }
 
-// Button event that saves our chosen city(ies) and displays content
+// SEARCH BUTTON
 searchButtonEl.on('click', function () {
     var searchItem = searchBarEl.val();
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchItem + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
@@ -96,31 +98,34 @@ searchButtonEl.on('click', function () {
             }
         })
         .then(function (response) {
+            cityEl.empty();
+            forecastEl.empty();
+            otherEl.empty();
+            iconEl.empty();
+            tempTodayEl.empty();
+            windEl.empty();
+            humidityEl.empty();
             localStorageCount++
             localStorage.setItem(localStorageCount, searchItem);
             localStorage.setItem('count', localStorageCount)
             var listItem = $(".list-group").addClass("list-group-item");
             listItem.append("<li>" + searchItem + "</li>");
             savedCitiesEl.append(listItem);
-            nameEl.innerHTML = response.name;
+            // Appending Cities with the search button
+            cityEl.append("<h3>" + response.name + "</h3>").addClass("city-title")
+            cityEl.append(moment().format("MMM Do, YYYY"));
+            tempTodayEl.append(response.main.temp + "°F")
+            cityEl.append(tempTodayEl);
+            iconEl.append("<img src =https://openweathermap.org/img/wn/"+response.weather[0].icon+".png >");
+            otherEl.append("Conditions: " +response.weather[0].description);
+            iconEl.append(otherEl)
+            cityEl.append(iconEl);
+            humidityEl.append("Humidity: " +response.main.humidity);
+            cityEl.append(humidityEl);
+            windEl.append("Wind speed: " +response.wind.speed + "mph ");
+            windEl.append("Gusts: " +response.wind.gust + "mph");
+            cityEl.append(windEl);
 
         })
-
-    // USING THE SECOND FETCH TO GATHER FORECAST DATA 
-    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchItem + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
-
-    fetch(forecastUrl)
-        .then(function (response) {
-            return response.json();
-        })
-
-        .then(function (response) {
-            for (i = 0; i <= data.list.length; i++)
-                var forecast = data.list[i]
-            forecastEl.append(forecast)
-            console.log(data);
-        })
-
-
 
 })

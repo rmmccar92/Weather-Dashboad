@@ -40,11 +40,13 @@ body {
 }
 
 .city {
-    border: solid black 4px;
+    color: gainsboro;
+    background-color: dimgray;
     padding: 1em;
     width: 100%;
     height: 50%;
     margin-bottom:0.25em;
+    box-shadow: 2px 4px 4px black;
 }
 
 .forecast {
@@ -82,10 +84,20 @@ li:hover{
 .temp-today {
     font-size: 60px;
     font-weight: bolder;
+    text-decoration: black underline 3px;
+}
+
+.card {
+    background-image:linear-gradient(to right bottom, #38033f, #06008B);    color: white;
+    box-shadow: 2px 5px 5px black;
 }
 
 .other-info {
     font-size: 34px;
     padding: 1em;
+}
+
+.cities img {
+    max-width: 40px;
 }
 
