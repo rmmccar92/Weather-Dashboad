@@ -11,7 +11,7 @@ var humidityEl = $(".humidity");
 var windEl = $(".wind");
 var localStorageCount = 0;
 var savedCitiesEl = $(".saved-cities-list");
-var currentCount = 0
+var currentCount = 0;
 
 
 // Clear Placeholder text on click
@@ -29,56 +29,6 @@ for (i = 0; i < localStorageCount; i++) {
     listItem.append("<li>" + savedCity + "</li>");
     savedCitiesEl.append(listItem);
 }
-
-
-// REDISPLAY SELECTED CITY WHEN CLICKED 
-$("li").on('click', function () {
-    cityEl.empty();
-    forecastEl.empty();
-    otherEl.empty();
-    iconEl.empty();
-    tempTodayEl.empty();
-    windEl.empty();
-    humidityEl.empty();
-    var clickWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
-    var clickForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
-    // console.log(clickForecastUrl);
-    // console.log(clickWeatherUrl);
-    fetch(clickWeatherUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (response) {
-            cityEl.append("<h3>" + response.name + "</h3>").addClass("city-title")
-            cityEl.append(moment().format("MMM Do, YYYY"));
-            tempTodayEl.append(response.main.temp + "°F")
-            cityEl.append(tempTodayEl);
-            iconEl.append("<img src =https://openweathermap.org/img/wn/"+response.weather[0].icon+".png >");
-            // Appending current weather conditions
-            otherEl.append("Conditions: " +response.weather[0].description);
-            iconEl.append(otherEl)
-            cityEl.append(iconEl);
-            humidityEl.append("Humidity: " +response.main.humidity);
-            cityEl.append(humidityEl);
-            windEl.append("Wind speed: " +response.wind.speed + "mph ");
-            windEl.append("Gusts: " +response.wind.gust + "mph");
-            cityEl.append(windEl);
-
-        })
-
-
-    fetch(clickForecastUrl)
-        .then(function (response) {
-            return response.json();
-        })
-
-        .then(function (data) {
-            for (i = 0; i <= data.list.length; i++)
-                var forecast = data.list[i]
-            forecastEl.append(forecast)
-            // console.log(data);
-        })
-})
 
 function displayWeather() {
     cityEl.empty();
@@ -128,4 +78,54 @@ searchButtonEl.on('click', function () {
 
         })
 
+})
+
+// REDISPLAY SELECTED CITY WHEN CLICKED 
+// event delegation to make sure dynamically added list items are clickable
+$(savedCitiesEl).on("click", "li", function() {
+    cityEl.empty();
+    forecastEl.empty();
+    otherEl.empty();
+    iconEl.empty();
+    tempTodayEl.empty();
+    windEl.empty();
+    humidityEl.empty();
+    var clickWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
+    var clickForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
+    // console.log(clickForecastUrl);
+    // console.log(clickWeatherUrl);
+    fetch(clickWeatherUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            cityEl.append("<h3>" + response.name + "</h3>").addClass("city-title")
+            cityEl.append(moment().format("MMM Do, YYYY"));
+            tempTodayEl.append(response.main.temp + "°F")
+            cityEl.append(tempTodayEl);
+            iconEl.append("<img src =https://openweathermap.org/img/wn/"+response.weather[0].icon+".png >");
+            // Appending current weather conditions
+            otherEl.append("Conditions: " +response.weather[0].description);
+            iconEl.append(otherEl)
+            cityEl.append(iconEl);
+            humidityEl.append("Humidity: " +response.main.humidity);
+            cityEl.append(humidityEl);
+            windEl.append("Wind speed: " +response.wind.speed + "mph ");
+            windEl.append("Gusts: " +response.wind.gust + "mph");
+            cityEl.append(windEl);
+
+        })
+
+
+    fetch(clickForecastUrl)
+        .then(function (response) {
+            return response.json();
+        })
+
+        .then(function (data) {
+            for (i = 0; i <= data.list.length; i++)
+                var forecast = data.list[i]
+            forecastEl.append(forecast)
+            // console.log(data);
+        })
 })
