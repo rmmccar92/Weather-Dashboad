@@ -425,7 +425,7 @@ $(savedCitiesEl).on("click", "li", function () {
     uvEl.empty();
     var cityLat;
     var cityLon;
-    var searchItem = searchBarEl.val();
+    var clickedCity;
     var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.textContent + "&APPID=bad5978aa0a3219541f59dde7ea1608a&units=imperial";
     fetch(weatherURL)
         .then(function (response) {
@@ -438,6 +438,7 @@ $(savedCitiesEl).on("click", "li", function () {
         }).then(function (data) {
             cityLat = data.coord.lat;
             cityLon = data.coord.lon;
+            clickedCity = data.name
             return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "&appid=bad5978aa0a3219541f59dde7ea1608a&units=imperial")
         })
         .then(function (response) {
@@ -447,15 +448,6 @@ $(savedCitiesEl).on("click", "li", function () {
                 return Promise.reject(response);
             }
         }).then(function (response) {
-
-            //Clearing Previous Inputs
-            cityEl.empty();
-            forecastEl.empty();
-            otherEl.empty();
-            iconEl.empty();
-            tempTodayEl.empty();
-            windEl.empty();
-            humidityEl.empty();
 
             // ForeCast Clears
             // Day 1
@@ -501,7 +493,7 @@ $(savedCitiesEl).on("click", "li", function () {
 
 
             // Appending Cities with the search button
-            cityEl.append("<h3>" + searchItem + "</h3>").addClass("city-title")
+            cityEl.append("<h3>" + clickedCity + "</h3>").addClass("city-title")
             cityEl.append(moment().format("MMM Do, YYYY"));
             tempTodayEl.append(response.current.temp + "°F")
             cityEl.append(tempTodayEl);
