@@ -6,3 +6,7 @@ I chose to utilize the Bootstrap framework for my search bar and city list on th
 
 ![City One](https://github.com/rmmccar92/Weather-Dashboad/blob/main/Images/Dashboard1.JPG)
 ![City Two](https://github.com/rmmccar92/Weather-Dashboad/blob/main/Images/Dashboard2.JPG)
+
+
+Link to the repository: https://github.com/rmmccar92/Weather-Dashboad
+Link to the deployed application page: https://rmmccar92.github.io/Weather-Dashboad/
