@@ -4,5 +4,5 @@ In this project we were asked to use the Open Weather Api to create an applicati
 
 I chose to utilize the Bootstrap framework for my search bar and city list on the left side of the page as well as the forecast cards at the bottom. I also used Moment JS to display the current and relative dates on the page.  Finally I utilized Google Fonts and Font Awesome for some minor styling on the page. Images of the deployed application can be seen below.
 
-![City One]()
-![City Two]()
+![City One](https://github.com/rmmccar92/Weather-Dashboad/blob/main/Images/Dashboard1.JPG)
+![City Two](https://github.com/rmmccar92/Weather-Dashboad/blob/main/Images/Dashboard2.JPG)
